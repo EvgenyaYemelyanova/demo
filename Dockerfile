@@ -1,6 +1,6 @@
 FROM openjdk:17
-VOLUME /tmp
-ADD build/libs/*.jar demo.jar
-EXPOSE 8888
-RUN bash -c 'touch /demo.jar'
-ENTRYPOINT ["java","-jar","demo.jar" ]
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
+COPY ./build/libs/* ./app.jar
+EXPOSE 8080
+CMD ["java","-jar","app.jar"]
